@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ntkw1jx60oup"
-path="res://.godot/imported/leaves-and-branches-tileset.png-ba390ee746ba665a6afcf4c92b47dc14.ctex"
+uid="uid://bww30xwgqlefp"
+path="res://.godot/imported/leaves and branches tileset.png-6b935e60b6644ba14d586d1886868e37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/leaves-and-branches-tileset.png"
-dest_files=["res://.godot/imported/leaves-and-branches-tileset.png-ba390ee746ba665a6afcf4c92b47dc14.ctex"]
+source_file="res://Art/leaves and branches tileset.png"
+dest_files=["res://.godot/imported/leaves and branches tileset.png-6b935e60b6644ba14d586d1886868e37.ctex"]
 
 [params]
 
