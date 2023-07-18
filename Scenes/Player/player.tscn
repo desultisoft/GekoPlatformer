@@ -14,13 +14,13 @@ region = Rect2(0, 0, 24, 24)
 atlas = ExtResource("1_1a360")
 region = Rect2(24, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o1b5c"]
-atlas = ExtResource("1_1a360")
-region = Rect2(192, 0, 24, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_orcw8"]
 atlas = ExtResource("1_1a360")
 region = Rect2(216, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufoae"]
+atlas = ExtResource("1_1a360")
+region = Rect2(264, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pfoau"]
 atlas = ExtResource("1_1a360")
@@ -69,16 +69,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o1b5c")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_orcw8")
 }],
 "loop": true,
 "name": &"Jump",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufoae")
+}],
 "loop": true,
 "name": &"Land",
 "speed": 5.0
@@ -115,8 +115,7 @@ height = 14.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xnuxu")
-animation = &"Idle"
-frame_progress = 0.655646
+animation = &"Jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)

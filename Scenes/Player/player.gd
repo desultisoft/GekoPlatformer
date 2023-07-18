@@ -32,9 +32,14 @@ func _physics_process(delta):
 	elif velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
 	
-	if velocity == Vector2.ZERO:
+	if velocity == Vector2.ZERO and is_on_floor():
 		$AnimatedSprite2D.play("Idle")
-	else:
+	elif is_on_floor():
 		$AnimatedSprite2D.play("Walking")
+	
+	if not is_on_floor() and velocity.y <= 0:
+		$AnimatedSprite2D.play("Jump")
+	elif not is_on_floor():
+		$AnimatedSprite2D.play("Fall")
 
 	move_and_slide()
