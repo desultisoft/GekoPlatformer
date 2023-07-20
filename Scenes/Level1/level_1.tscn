@@ -95,6 +95,7 @@ region_rect = Rect2(0, 983, 956, 86)
 
 [node name="Tree" parent="." instance=ExtResource("3_m07je")]
 position = Vector2(0, -24.9733)
+grow_time = 1.0
 
 [node name="Player" parent="." instance=ExtResource("1_j5121")]
 position = Vector2(7.67883, -47.3021)

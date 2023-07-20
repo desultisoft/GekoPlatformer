@@ -1,22 +1,12 @@
 extends Node2D
 
-
 @export var grow_time = 1.0
-
-# Defining bottom middle tile as relative (0,0) position Atlas (22,17)
-# going from top left, left to right
-const tree_base_pattern ={
-	"coords": [
-		[[18,16],[19,16],[20,16],[21,16],[22, 16],[23,16],[24,16],[25,16]],
-		[[16,17],[17,17],[18,17],[19,17],[20,17],[21,17],[22,17],[23,17],[24,17],[25,17],[26,17],[27,17]],
-		[[20,18],[21,18],[23,18]]
-	],
-	"center_tile": Vector2(22, 17)
-} 
+@onready var patterns = preload("res://Scenes/Tree/tree_patterns.gd")
 
 func _ready():
-	pattern_builder(tree_base_pattern, Vector2(0,0))
-
+	pattern_builder(patterns.stump, Vector2(0,0))
+	pattern_builder(patterns.trunk, Vector2(0,-3))
+	pattern_builder(patterns.cap, Vector2(0,-10))
 
 func pattern_builder(pattern, offset):
 	var coords = pattern["coords"]
