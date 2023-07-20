@@ -20,6 +20,7 @@ size = Vector2(20, 1508.82)
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Space" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -212.747)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Space"]
 position = Vector2(-1.33484, -485.214)
@@ -34,6 +35,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 960, 560)
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -212.747)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
 texture = ExtResource("2_ryibd")
@@ -41,7 +43,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 956, 416)
 
 [node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(206.446, -690.505)
+position = Vector2(206.446, -903.252)
 motion_scale = Vector2(1.04, 1.04)
 
 [node name="LargeCloud" type="Sprite2D" parent="ParallaxBackground/Clouds"]
@@ -56,6 +58,7 @@ region_enabled = true
 region_rect = Rect2(1026, 227, 180, 89)
 
 [node name="LowClouds" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -212.747)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LowClouds"]
 texture = ExtResource("2_ryibd")
@@ -63,7 +66,7 @@ region_enabled = true
 region_rect = Rect2(0, 427, 956, 185)
 
 [node name="BlueTrees" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(0, 83.2485)
+position = Vector2(0, -129.498)
 motion_scale = Vector2(1.03, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/BlueTrees"]
@@ -72,7 +75,7 @@ region_enabled = true
 region_rect = Rect2(0, 620, 956, 196)
 
 [node name="PurpleTrees" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(0, 115.623)
+position = Vector2(0, -97.1238)
 motion_scale = Vector2(1.05, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/PurpleTrees"]
@@ -81,7 +84,7 @@ region_enabled = true
 region_rect = Rect2(0, 823, 956, 141)
 
 [node name="Ground" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(0, 212.746)
+position = Vector2(0, -0.000854492)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Ground"]
 position = Vector2(0, 7.66898)
@@ -91,10 +94,10 @@ region_enabled = true
 region_rect = Rect2(0, 983, 956, 86)
 
 [node name="Tree" parent="." instance=ExtResource("3_m07je")]
-position = Vector2(-29.2601, 138.985)
+position = Vector2(0, -24.9733)
 
 [node name="Player" parent="." instance=ExtResource("1_j5121")]
-position = Vector2(7.67883, 154.513)
+position = Vector2(7.67883, -47.3021)
 script = ExtResource("2_wfsor")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -104,6 +107,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="Barriers" type="Node2D" parent="."]
+position = Vector2(0, -201.815)
 
 [node name="Ground" type="StaticBody2D" parent="Barriers"]
 position = Vector2(0, 209.339)
