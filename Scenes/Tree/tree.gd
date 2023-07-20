@@ -4,10 +4,10 @@ extends Node2D
 @onready var patterns = preload("res://Scenes/Tree/tree_patterns.gd")
 
 func _ready():
-	var offset = Vector2(0,0)
-	offset = pattern_builder(patterns.stump, Vector2(0,0))
-	offset = pattern_builder(patterns.trunk, Vector2(0,-3))
-	offset = pattern_builder(patterns.cap, Vector2(0,-10))
+	var grow_point = Vector2(0,0)
+	grow_point = pattern_builder(patterns.stump, grow_point)
+	grow_point = pattern_builder(patterns.trunk, grow_point)
+	grow_point = pattern_builder(patterns.cap, grow_point)
 
 func pattern_builder(pattern, offset):
 	var coords = pattern["coords"]
@@ -18,8 +18,6 @@ func pattern_builder(pattern, offset):
 			var atlas_pos = Vector2(x, y)
 			var game_pos = atlas_pos - pattern["start_tile"] + offset
 			$Trunk.set_cell(0, game_pos, 1, atlas_pos)
-			
-	var new_offset = offset + pattern["start_tile"] - pattern["end_tile"]
-	new_offset = pattern["start_tile"] - pattern["end_tile"] - Vector2(0, -1)
-	print(new_offset)
+	var relative_change = pattern["end_tile"]-pattern["start_tile"]
+	var new_offset = offset + relative_change + Vector2(0, -1) #add 1 above
 	return new_offset
