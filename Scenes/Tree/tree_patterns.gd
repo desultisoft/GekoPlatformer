@@ -7,7 +7,8 @@ const stump = {
 		[[16,17],[17,17],[18,17],[19,17],[20,17],[21,17],[22,17],[23,17],[24,17],[25,17],[26,17],[27,17]],
 		[[20,18],[21,18],[23,18]]
 	],
-	"center_tile": Vector2(22, 17)
+	"start_tile": Vector2(21, 18),
+	"end_tile":Vector2(22, 15)
 }
 
 const trunk = {
@@ -20,12 +21,14 @@ const trunk = {
 		[[0,8], [1,8], [2,8]],
 		[[0,9], [1,9], [2,9]],
 	],
-	"center_tile": Vector2(1, 9)
+	"start_tile": Vector2(1, 9),
+	"end_tile": Vector2(1,3)
 }
 
 const cap = {
 	"coords": [
 		[[0,1], [1,1], [2,1]],
 	],
-	"center_tile": Vector2(1, 1)
+	"start_tile": Vector2(1, 1),
+	"end_tile": Vector2(1,1)
 }
