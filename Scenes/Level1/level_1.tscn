@@ -366,22 +366,21 @@ size = Vector2(958.021, 41.0597)
 
 [node name="Level1" type="Node2D"]
 
-[node name="Background" type="Node2D" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="Sky1" type="Sprite2D" parent="Background"]
-position = Vector2(0, -484.32)
+[node name="Space" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Space"]
+position = Vector2(-1.33484, -485.214)
 texture = ExtResource("4_e4fcw")
 region_enabled = true
 region_rect = Rect2(0, 0, 960, 560)
 
-[node name="Ground&Sky" type="Sprite2D" parent="Background"]
-visible = false
-position = Vector2(0, -40)
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Space"]
+position = Vector2(-0.667419, -1039.84)
 texture = ExtResource("4_e4fcw")
 region_enabled = true
-region_rect = Rect2(0, 575, 960, 519)
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+region_rect = Rect2(0, 0, 960, 560)
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
 
@@ -389,6 +388,21 @@ region_rect = Rect2(0, 575, 960, 519)
 texture = ExtResource("2_ryibd")
 region_enabled = true
 region_rect = Rect2(0, 0, 956, 416)
+
+[node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(206.446, -690.505)
+motion_scale = Vector2(1.04, 1.04)
+
+[node name="LargeCloud" type="Sprite2D" parent="ParallaxBackground/Clouds"]
+texture = ExtResource("4_e4fcw")
+region_enabled = true
+region_rect = Rect2(972, 18, 288, 155)
+
+[node name="Small Clouds" type="Sprite2D" parent="ParallaxBackground/Clouds"]
+position = Vector2(-378.494, 26.9004)
+texture = ExtResource("4_e4fcw")
+region_enabled = true
+region_rect = Rect2(1026, 227, 180, 89)
 
 [node name="LowClouds" type="ParallaxLayer" parent="ParallaxBackground"]
 
@@ -423,14 +437,6 @@ texture = ExtResource("2_ryibd")
 region_enabled = true
 region_rect = Rect2(0, 983, 956, 86)
 
-[node name="Clouds" type="Node2D" parent="."]
-
-[node name="Cloud1" type="Sprite2D" parent="Clouds"]
-position = Vector2(270.833, -660.156)
-texture = ExtResource("4_e4fcw")
-region_enabled = true
-region_rect = Rect2(960, 0, 320, 200)
-
 [node name="Branches" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_sqop1")
 format = 2
@@ -455,8 +461,8 @@ position = Vector2(7.67883, 154.513)
 script = ExtResource("2_wfsor")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -9.87463)
-zoom = Vector2(4, 4)
+position = Vector2(0, -19.0194)
+zoom = Vector2(5, 5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
