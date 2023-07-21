@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://br1a4fo46yske"]
+[gd_scene load_steps=8 format=3 uid="uid://br1a4fo46yske"]
 
 [ext_resource type="PackedScene" uid="uid://gwrj27qy6rdu" path="res://Scenes/Player/player.tscn" id="1_j5121"]
 [ext_resource type="Texture2D" uid="uid://c5wnf0hlgut3n" path="res://Art/BackgroundLayers.png" id="2_ryibd"]
-[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="2_wfsor"]
 [ext_resource type="PackedScene" uid="uid://ceqd5v8gph6hm" path="res://Scenes/Tree/tree.tscn" id="3_m07je"]
 [ext_resource type="Texture2D" uid="uid://ds64y7vmc0wa4" path="res://Art/Background.png" id="4_e4fcw"]
 
@@ -98,7 +97,7 @@ position = Vector2(0, -24.9733)
 
 [node name="Player" parent="." instance=ExtResource("1_j5121")]
 position = Vector2(7.67883, -47.3021)
-script = ExtResource("2_wfsor")
+collision_mask = 6
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -19.0194)
@@ -111,6 +110,8 @@ position = Vector2(0, -201.815)
 
 [node name="Ground" type="StaticBody2D" parent="Barriers"]
 position = Vector2(0, 209.339)
+collision_layer = 4
+collision_mask = 0
 
 [node name="Ground" type="CollisionShape2D" parent="Barriers/Ground"]
 position = Vector2(-0.00492859, -7.33907)
@@ -118,6 +119,8 @@ shape = SubResource("RectangleShape2D_sx4ld")
 
 [node name="LeftWall" type="StaticBody2D" parent="Barriers"]
 position = Vector2(-277.499, 2.83154)
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/LeftWall"]
 position = Vector2(0, -564.163)
@@ -125,6 +128,8 @@ shape = SubResource("RectangleShape2D_c1e5p")
 
 [node name="RightWall" type="StaticBody2D" parent="Barriers"]
 position = Vector2(299.208, -538.952)
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/RightWall"]
 shape = SubResource("RectangleShape2D_kj0cy")

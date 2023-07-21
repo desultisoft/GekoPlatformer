@@ -17,35 +17,43 @@ var gravity = default_gravity
 var x_boost = 0
 var state = "idle"
 var saved_jump = false
-var coyote_save = false
+var coyote_save = "ground"
 var can_glide = false
 var facing = 1
 
 
 func _physics_process(delta):
+	var above_something = false
+	for body in $Area2D.get_overlapping_bodies():
+		if body.name == "Ground" or body.name== "Branches":
+			above_something = true
+	
+	if is_on_floor():
+		coyote_save = "ground"
+	elif coyote_save == "ground":
+		coyote_time_handler()
 
 	if Input.is_action_just_pressed("ui_accept"):
 		saved_jump_time_handler()
 	
 	# Handle jumping and gliding
-	if saved_jump and (is_on_floor() or coyote_save):
+	# Is on the ground or in coyote time
+	if saved_jump and (is_on_floor() or coyote_save =="open"):
 		velocity.y = jump_power
 		saved_jump = false
-		coyote_save = false
-	elif saved_jump and can_glide and not is_on_floor():
+		coyote_save = "closed"
+	# In the air 
+	elif saved_jump and can_glide and not above_something:
 		velocity.y = 0
 		gravity = glide_gravity
 		x_boost = glide_boost
-		glide_time_handler()
+		can_glide = false
 		saved_jump = false
+	# Reseting gravity and boost regarless if gliding
 	elif saved_jump and not is_on_floor():
 		gravity = default_gravity
 		x_boost = 0
-		saved_jump
-		
-		
 
-	# Up/Down movement
 	if is_on_floor():
 		can_glide = true
 		x_boost = 0
@@ -62,56 +70,58 @@ func _physics_process(delta):
 	else:
 		velocity.x = lerp(velocity.x, 0.0, 0.2)+ x_boost*facing
 		
-		
-		
-	print(can_glide)
 	move_and_slide()
 	
-
-#	# Set state
-#	if direction == 0 and is_on_floor():
-#		state = handle_state_change(state, "idle")
-#	elif is_on_floor():
-#		state = handle_state_change(state, "walking")
-#	elif not is_on_floor() and velocity.y <= 0:
-#		state = handle_state_change(state, "jumping")
-#	elif not is_on_floor():
-#		state = handle_state_change(state, "falling")
-#
-#	# Set image facing
-#	if velocity.x > 0:
-#		$AnimatedSprite2D.flip_h = false
-#	elif velocity.x < 0:
-#		$AnimatedSprite2D.flip_h = true
-
+	# Set image facing
+	if velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false
+	elif velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
 	
+	# Set state
+	if direction == 0 and is_on_floor():
+		state = handle_state_change(state, "idle")
+	elif is_on_floor():
+		state = handle_state_change(state, "walking")
+	elif not is_on_floor() and gravity < default_gravity:
+		state = handle_state_change(state, "gliding")
+	elif not is_on_floor() and velocity.y <= 0:
+		state = handle_state_change(state, "jumping")
+	elif not is_on_floor():
+		state = handle_state_change(state, "falling")
 	
 
-#func handle_state_change(old_state, new_state):
-#	var was_grounded = (old_state == "idle" or old_state == "walking")
-#	var is_grounded = (new_state == "idle" or new_state == "walking")
-#	if was_grounded and new_state == "jumping":
-#	if old_state == "falling" and is_grounded:
-#
-#	return new_state
+func handle_state_change(old_state, new_state):
+	var was_grounded = (old_state == "idle" or old_state == "walking")
+	var is_grounded = (new_state == "idle" or new_state == "walking")
+	var was_in_air = (old_state == "falling" or old_state=="gliding")
+	if was_grounded and new_state == "jumping":
+		$AnimatedSprite2D.play("Jump")
+		play_effect(jump_effect)
+	if is_grounded and was_in_air:
+		play_effect(land_effect)
+	if new_state == "falling":
+		$AnimatedSprite2D.play("Fall")
+	if new_state == "idle":
+		$AnimatedSprite2D.play("Idle")
+	if new_state == "walking":
+		$AnimatedSprite2D.play("Walking")
+	if new_state == "gliding":
+		$AnimatedSprite2D.play("Glide")
+	return new_state
 
-func dust_thing():
-	var dust = land_effect.instantiate()
+func play_effect(effect):
+	var dust = effect.instantiate()
 	get_parent().get_parent().add_child(dust)
 	dust.global_position = global_position
 	dust.flip_h = !$AnimatedSprite2D.flip_h
 	
 func coyote_time_handler():
-	coyote_save = true
+	coyote_save = "open"
 	await get_tree().create_timer(coyote_time).timeout
-	coyote_save = false
+	coyote_save = "closed"
 
 func saved_jump_time_handler():
 	saved_jump = true
 	await get_tree().create_timer(jump_time).timeout
 	saved_jump = false
-
-func glide_time_handler():
-	can_glide = false
-	await get_tree().create_timer(glide_time).timeout
-	can_glide = true
