@@ -5,82 +5,101 @@ extends CharacterBody2D
 
 @export var movement_speed = 200.0
 @export var jump_power = -400.0
-@export var coyote_time = 0.15
-@export var saved_jump_time = 1.0
+@export var coyote_time = 0.2
+@export var jump_time = 0.1
+@export var glide_gravity = 160.0
+@export var glide_boost = 20.0
+@export var glide_time = 4
 
+const default_gravity = 980.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+var gravity = default_gravity
+var x_boost = 0
 var state = "idle"
 var saved_jump = false
 var coyote_save = false
-var coyote_timer
+var can_glide = false
+var facing = 1
+
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		
-	# Handle Jump. If in air save the jump input, so he jumps as soon as he hits the ground
+
 	if Input.is_action_just_pressed("ui_accept"):
 		saved_jump_time_handler()
-
+	
+	# Handle jumping and gliding
 	if saved_jump and (is_on_floor() or coyote_save):
 		velocity.y = jump_power
 		saved_jump = false
 		coyote_save = false
+	elif saved_jump and can_glide and not is_on_floor():
+		velocity.y = 0
+		gravity = glide_gravity
+		x_boost = glide_boost
+		glide_time_handler()
+		saved_jump = false
+	elif saved_jump and not is_on_floor():
+		gravity = default_gravity
+		x_boost = 0
+		saved_jump
+		
+		
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * movement_speed
+	# Up/Down movement
+	if is_on_floor():
+		can_glide = true
+		x_boost = 0
+		gravity = default_gravity
 	else:
-		velocity.x = lerp(velocity.x, 0.0, 0.2)
-	
-	
-	# Set image facing
-	if velocity.x > 0:
-		$AnimatedSprite2D.flip_h = false
-	elif velocity.x < 0:
-		$AnimatedSprite2D.flip_h = true
-	
-	# Set animations
-	if direction == 0 and is_on_floor():
-		$AnimatedSprite2D.play("Idle")
-		state = handle_state_change(state, "idle")
-	elif is_on_floor():
-		$AnimatedSprite2D.play("Walking")
-		state = handle_state_change(state, "walking")
-	if not is_on_floor() and velocity.y <= 0:
-		$AnimatedSprite2D.play("Jump")
-		state = handle_state_change(state, "soaring")
-	elif not is_on_floor():
-		$AnimatedSprite2D.play("Fall")
-		state = handle_state_change(state, "falling")
+		velocity.y += gravity * delta
 
-	# Move 
+	# Left/Right movement
+	var direction = Input.get_axis("ui_left", "ui_right")
+	if direction != 0:
+		facing = direction
+	if direction:
+		velocity.x = direction * movement_speed + x_boost*facing
+	else:
+		velocity.x = lerp(velocity.x, 0.0, 0.2)+ x_boost*facing
+		
+		
+		
+	print(can_glide)
 	move_and_slide()
 	
 
-func handle_state_change(old_state, new_state):
-	var was_grounded = (old_state == "idle" or old_state == "walking")
-	var is_grounded = (new_state == "idle" or new_state == "walking")
-	if was_grounded and new_state == "soaring":
-		var dust = jump_effect.instantiate()
-		get_parent().get_parent().add_child(dust)
-		dust.global_position = global_position
-		dust.flip_h = !$AnimatedSprite2D.flip_h 
-	if old_state == "falling" and is_grounded:
-		var dust = land_effect.instantiate()
-		get_parent().get_parent().add_child(dust)
-		dust.global_position = global_position
-		dust.flip_h = !$AnimatedSprite2D.flip_h
-	if was_grounded and new_state == "falling":
-		coyote_time_handler()
-		
-	return new_state
+#	# Set state
+#	if direction == 0 and is_on_floor():
+#		state = handle_state_change(state, "idle")
+#	elif is_on_floor():
+#		state = handle_state_change(state, "walking")
+#	elif not is_on_floor() and velocity.y <= 0:
+#		state = handle_state_change(state, "jumping")
+#	elif not is_on_floor():
+#		state = handle_state_change(state, "falling")
+#
+#	# Set image facing
+#	if velocity.x > 0:
+#		$AnimatedSprite2D.flip_h = false
+#	elif velocity.x < 0:
+#		$AnimatedSprite2D.flip_h = true
+
+	
+	
+
+#func handle_state_change(old_state, new_state):
+#	var was_grounded = (old_state == "idle" or old_state == "walking")
+#	var is_grounded = (new_state == "idle" or new_state == "walking")
+#	if was_grounded and new_state == "jumping":
+#	if old_state == "falling" and is_grounded:
+#
+#	return new_state
+
+func dust_thing():
+	var dust = land_effect.instantiate()
+	get_parent().get_parent().add_child(dust)
+	dust.global_position = global_position
+	dust.flip_h = !$AnimatedSprite2D.flip_h
 	
 func coyote_time_handler():
 	coyote_save = true
@@ -89,5 +108,10 @@ func coyote_time_handler():
 
 func saved_jump_time_handler():
 	saved_jump = true
-	await get_tree().create_timer(coyote_time).timeout
+	await get_tree().create_timer(jump_time).timeout
 	saved_jump = false
+
+func glide_time_handler():
+	can_glide = false
+	await get_tree().create_timer(glide_time).timeout
+	can_glide = true
