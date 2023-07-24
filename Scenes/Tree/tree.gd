@@ -14,12 +14,11 @@ func _ready():
 func pattern_builder(pattern, offset):
 	var coords = pattern["coords"]
 	for i in range(len(coords)-1,-1, -1):
-		var game_pos
 		for j in range(len(coords[i])):
 			var x = coords[i][j][0]
 			var y = coords[i][j][1]
 			var atlas_pos = Vector2(x, y)
-			game_pos = atlas_pos - pattern["start_tile"] + offset
+			var game_pos = atlas_pos - pattern["start_tile"] + offset
 			$Trunk.set_cell(0, game_pos, 1, atlas_pos)
 	var relative_change = pattern["end_tile"]-pattern["start_tile"]
 	var new_offset = offset + relative_change + Vector2(0, -1) #add 1 above

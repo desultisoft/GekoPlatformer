@@ -85,7 +85,7 @@ func _physics_process(delta):
 		state = handle_state_change(state, "walking")
 	elif not is_on_floor() and gravity < default_gravity:
 		state = handle_state_change(state, "gliding")
-	elif not is_on_floor() and velocity.y <= 0:
+	elif not is_on_floor() and velocity.y < 0:
 		state = handle_state_change(state, "jumping")
 	elif not is_on_floor():
 		state = handle_state_change(state, "falling")

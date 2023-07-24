@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ds64y7vmc0wa4" path="res://Art/Background.png" id="4_e4fcw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sx4ld"]
-size = Vector2(958.021, 34.678)
+size = Vector2(2533.76, 34.678)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1e5p"]
 size = Vector2(20, 1494.15)
@@ -33,6 +33,30 @@ texture = ExtResource("4_e4fcw")
 region_enabled = true
 region_rect = Rect2(0, 0, 960, 560)
 
+[node name="Sprite2D5" type="Sprite2D" parent="ParallaxBackground/Space"]
+position = Vector2(-948.265, -485.214)
+texture = ExtResource("4_e4fcw")
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 560)
+
+[node name="Sprite2D6" type="Sprite2D" parent="ParallaxBackground/Space"]
+position = Vector2(-947.597, -1039.84)
+texture = ExtResource("4_e4fcw")
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 560)
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Space"]
+position = Vector2(950.09, -485.214)
+texture = ExtResource("4_e4fcw")
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 560)
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/Space"]
+position = Vector2(950.758, -1039.84)
+texture = ExtResource("4_e4fcw")
+region_enabled = true
+region_rect = Rect2(0, 0, 960, 560)
+
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(0, -212.747)
 
@@ -41,9 +65,20 @@ texture = ExtResource("2_ryibd")
 region_enabled = true
 region_rect = Rect2(0, 0, 956, 416)
 
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Sky"]
+position = Vector2(-940.937, 0)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 0, 956, 416)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Sky"]
+position = Vector2(951.425, 0)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 0, 956, 416)
+
 [node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(206.446, -903.252)
-motion_scale = Vector2(1.04, 1.04)
 
 [node name="LargeCloud" type="Sprite2D" parent="ParallaxBackground/Clouds"]
 texture = ExtResource("4_e4fcw")
@@ -58,26 +93,63 @@ region_rect = Rect2(1026, 227, 180, 89)
 
 [node name="LowClouds" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(0, -212.747)
+motion_scale = Vector2(1.08, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/LowClouds"]
 texture = ExtResource("2_ryibd")
 region_enabled = true
 region_rect = Rect2(0, 427, 956, 185)
 
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/LowClouds"]
+position = Vector2(-949.927, 0)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 427, 956, 185)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/LowClouds"]
+position = Vector2(948.428, 0)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 427, 956, 185)
+
 [node name="BlueTrees" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(0, -129.498)
-motion_scale = Vector2(1.03, 1)
+motion_scale = Vector2(1.1, 1.05)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/BlueTrees"]
 texture = ExtResource("2_ryibd")
 region_enabled = true
 region_rect = Rect2(0, 620, 956, 196)
 
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/BlueTrees"]
+position = Vector2(-954.5, 0)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 620, 956, 196)
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/BlueTrees"]
+position = Vector2(949.008, 6.74237)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 620, 956, 196)
+
 [node name="PurpleTrees" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(0, -97.1238)
-motion_scale = Vector2(1.05, 1)
+motion_scale = Vector2(1.15, 1.05)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/PurpleTrees"]
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 823, 956, 141)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/PurpleTrees"]
+position = Vector2(-955.301, 1.4142)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 823, 956, 141)
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/PurpleTrees"]
+position = Vector2(953.05, 4.92435)
 texture = ExtResource("2_ryibd")
 region_enabled = true
 region_rect = Rect2(0, 823, 956, 141)
@@ -85,9 +157,38 @@ region_rect = Rect2(0, 823, 956, 141)
 [node name="Ground" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(0, -0.000854492)
 
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Ground"]
+position = Vector2(0, 32.8492)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 983, 956, 86)
+
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Ground"]
-position = Vector2(0, 7.66898)
-scale = Vector2(1, 1.17835)
+position = Vector2(0, 10)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 983, 956, 86)
+
+[node name="Sprite2D5" type="Sprite2D" parent="ParallaxBackground/Ground"]
+position = Vector2(-949.927, 32.8492)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 983, 956, 86)
+
+[node name="Sprite2D6" type="Sprite2D" parent="ParallaxBackground/Ground"]
+position = Vector2(-949.927, 10)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 983, 956, 86)
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Ground"]
+position = Vector2(952.174, 32.8492)
+texture = ExtResource("2_ryibd")
+region_enabled = true
+region_rect = Rect2(0, 983, 956, 86)
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/Ground"]
+position = Vector2(952.174, 10)
 texture = ExtResource("2_ryibd")
 region_enabled = true
 region_rect = Rect2(0, 983, 956, 86)
@@ -114,22 +215,23 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="Ground" type="CollisionShape2D" parent="Barriers/Ground"]
-position = Vector2(-0.00492859, -7.33907)
+position = Vector2(35.1222, -7.33907)
 shape = SubResource("RectangleShape2D_sx4ld")
 
 [node name="LeftWall" type="StaticBody2D" parent="Barriers"]
-position = Vector2(-277.499, 2.83154)
+position = Vector2(-1223.5, 2.83154)
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/LeftWall"]
-position = Vector2(0, -564.163)
+position = Vector2(151.329, -564.163)
 shape = SubResource("RectangleShape2D_c1e5p")
 
 [node name="RightWall" type="StaticBody2D" parent="Barriers"]
-position = Vector2(299.208, -538.952)
+position = Vector2(1307.21, -538.952)
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/RightWall"]
+position = Vector2(-194.78, 0)
 shape = SubResource("RectangleShape2D_kj0cy")
