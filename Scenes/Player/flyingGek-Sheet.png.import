@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7kbltkubv6yq"
-path="res://.godot/imported/Player-Sheet.png-744972d4a4390a9a2d2704ea29362a59.ctex"
+uid="uid://jnyfau63t2fa"
+path="res://.godot/imported/flyingGek-Sheet.png-5021297ae684dc9e4f01ae6dad249ffd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Player-Sheet.png"
-dest_files=["res://.godot/imported/Player-Sheet.png-744972d4a4390a9a2d2704ea29362a59.ctex"]
+source_file="res://Scenes/Player/flyingGek-Sheet.png"
+dest_files=["res://.godot/imported/flyingGek-Sheet.png-5021297ae684dc9e4f01ae6dad249ffd.ctex"]
 
 [params]
 
